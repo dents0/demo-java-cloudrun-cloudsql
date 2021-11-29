@@ -19,7 +19,7 @@ jobs:
       - name: Deploy to Cloud Run
         env:
           AR_HOST: ${{ secrets.AR_HOST }}
-          AR_REPO: ${{ secrets.AR_DIRECTORY }}
+          AR_REPO: ${{ secrets.AR_REPO }}
           IMG_NAME: ${{ secrets.IMG_NAME }}
           IMG_TAG: ${{ secrets.IMG_TAG }}
           RUN_SERVICE: ${{ secrets.RUN_SERVICE }}
@@ -43,38 +43,3 @@ jobs:
             --set-env-vars DB_PORT="5432" \
             --vpc-connector=${VPC_CONN} \
             --allow-unauthenticated
-
-
-
-
-
-
-
-
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
-        with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-          export_default_credentials: true
-
-      - name: Build with Maven/Jib and push to the
-        env:
-          AR_HOST: ${{ secrets.AR_HOST }}
-          AR_DIRECTORY: ${{ secrets.AR_DIRECTORY }}
-          IMG_NAME: ${{ secrets.IMG_NAME }}
-          IMG_TAG: ${{ secrets.IMG_TAG }}
-        run: mvn clean package com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=${AR_HOST}${AR_DIRECTORY}${IMG_NAME}:${IMG_TAG} -DskipTests
