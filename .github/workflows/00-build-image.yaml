@@ -26,4 +26,4 @@ jobs:
           AR_REPO: ${{ secrets.AR_REPO }}
           IMG_NAME: ${{ secrets.IMG_NAME }}
           IMG_TAG: ${{ secrets.IMG_TAG }}
-        run: mvn compile jib:build
+        run: mvn clean package
