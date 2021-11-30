@@ -20,10 +20,10 @@ jobs:
           service_account_key: ${{ secrets.GCP_CREDENTIALS }}
           export_default_credentials: true
 
-      - name: Build with Maven/Jib and push to the
+      - name: Build with Maven/Jib
         env:
           AR_HOST: ${{ secrets.AR_HOST }}
           AR_REPO: ${{ secrets.AR_REPO }}
           IMG_NAME: ${{ secrets.IMG_NAME }}
           IMG_TAG: ${{ secrets.IMG_TAG }}
-        run: mvn clean package com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=${AR_HOST}${AR_REPO}${IMG_NAME}:${IMG_TAG} -DskipTests
+        run: mvn compile jib:build
