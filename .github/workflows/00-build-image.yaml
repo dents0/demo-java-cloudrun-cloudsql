@@ -26,4 +26,7 @@ jobs:
           AR_REPO: ${{ secrets.AR_REPO }}
           IMG_NAME: ${{ secrets.IMG_NAME }}
           IMG_TAG: ${{ secrets.IMG_TAG }}
-        run: mvn clean package jib:build -DskipTests
+        run: |-
+          mvn clean package com.google.cloud.tools:jib-maven-plugin:3.1.4:build \
+            -Dimage=${AR_HOST}${AR_REPO}${IMG_NAME}:${IMG_TAG} \
+            -DskipTests
