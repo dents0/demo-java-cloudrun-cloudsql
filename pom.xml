@@ -59,20 +59,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>com.google.cloud.tools</groupId>
-        <artifactId>jib-maven-plugin</artifactId>
-        <version>3.1.4</version>
-        <configuration>
-          <to>
-            <image>${env.AR_HOST}${env.AR_REPO}${env.IMG_NAME}</image>
-            <tags>${env.IMG_TAG}</tags>
-          </to>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
