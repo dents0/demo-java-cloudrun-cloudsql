@@ -23,8 +23,9 @@ official GCP [sample](https://github.com/GoogleCloudPlatform/java-docs-samples/t
 4. Create a [database](https://cloud.google.com/sql/docs/postgres/quickstart-cloud-run#create-instance) and 
 a [user](https://cloud.google.com/sql/docs/postgres/quickstart-cloud-run#create_a_user) for your application. 
 
-5. Create a service account with the 'Cloud Run Developer', 'Cloud SQL Client' and 'Storage Admin' roles. Download a 
-JSON key to use to authenticate your connection. Alternatively, configure the service account used by Cloud Run.
+5. Create a service account with the 'Cloud Run Developer', 'Cloud SQL Client', 'Storage Admin' and 
+'Service Account User' roles. Download a JSON key to use to authenticate your connection. Alternatively, configure the 
+service account used by Cloud Run.
 
 
 ## Running locally
