@@ -1,6 +1,11 @@
 name: Deploy container image to Cloud Run
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      service_name:
+        description: "Cloud Run Service Name"
+        required: true
 
 jobs:
   build:
@@ -23,7 +28,7 @@ jobs:
           AR_REPO: ${{ secrets.AR_REPO }}
           IMG_NAME: ${{ secrets.IMG_NAME }}
           IMG_TAG: ${{ secrets.IMG_TAG }}
-          RUN_SERVICE: ${{ secrets.RUN_SERVICE }}
+          RUN_SERVICE: ${{ github.event.inputs.service_name }}
           RUN_REGION: ${{ secrets.RUN_REGION }}
           SQL_CONN: ${{ secrets.SQL_CONN }}
           SQL_DB: ${{ secrets.SQL_DB }}
