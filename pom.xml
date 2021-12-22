@@ -17,7 +17,6 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
-      <type>jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -59,4 +58,48 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.44.v20210927</version>
+        <configuration>
+          <scanIntervalSeconds>1</scanIntervalSeconds>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <executions>
+          <!--  Disable standard Maven artifact JAR deploy  -->
+          <execution>
+            <id>default-deploy</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <!--  Container build & Push to artifactory  -->
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>3.1.4</version>
+        <executions>
+          <execution>
+            <phase>deploy</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <to>
+            <image>eu.gcr.io/peaceful-basis-335812/gcr-cloudrun-repo/run-sql</image>
+            <tags>test</tags>
+          </to>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
