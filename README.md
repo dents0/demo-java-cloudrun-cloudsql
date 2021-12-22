@@ -3,14 +3,10 @@
 A demo Cloud Run application in Java that connects to a Cloud SQL instance via Private IP. Based on the 
 official GCP [sample](https://github.com/GoogleCloudPlatform/java-docs-samples/tree/main/cloud-sql/postgres/servlet).
 
+
 ## Before you begin
 
-1. Run the following gcloud command: 
-     
-        gcloud services enable compute.googleapis.com sqladmin.googleapis.com run.googleapis.com \
-        containerregistry.googleapis.com cloudbuild.googleapis.com
-
-    This command enables the following APIs:
+1. Enable the following APIs:
 
     - Compute Engine API
     - Cloud SQL Admin API
@@ -18,9 +14,8 @@ official GCP [sample](https://github.com/GoogleCloudPlatform/java-docs-samples/t
     - Container Registry API
     - Cloud Build API
 
-2. If you haven't already, set up a Java Development Environment (including google-cloud-sdk and 
-maven utilities) by following the [Java setup guide](https://cloud.google.com/java/docs/setup) and 
-[create a project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project).
+2. Create a [Serverless VPC Connector](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access#create-connector)
+   for connect to the instance's Private IP.
 
 3. Create a 2nd Gen Cloud SQL instance for PostgreSQL with Private IP by following these 
 [instructions](https://cloud.google.com/sql/docs/postgres/quickstart-cloud-run#expandable-2).
@@ -28,22 +23,30 @@ maven utilities) by following the [Java setup guide](https://cloud.google.com/ja
 4. Create a [database](https://cloud.google.com/sql/docs/postgres/quickstart-cloud-run#create-instance) and 
 a [user](https://cloud.google.com/sql/docs/postgres/quickstart-cloud-run#create_a_user) for your application. 
 
-5. Create a service account with the 'Cloud SQL Client' permissions. Download a JSON key to use to authenticate your 
-connection. Alternatively, configure the service account used by Cloud Run.
+5. Create a service account with the 'Cloud SQL Client' and 'Storage Admin' permissions. Download a JSON key to use to 
+authenticate your connection. Alternatively, configure the service account used by Cloud Run.
 
-6. Create a 
-[Serverless VPC Connector](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access#create-connector)
-for connections to the instance via Private IP.
+
+## Running locally
+
+To run this application locally, run the following command inside the project folder:
+
+    mvn jetty:run
+
+Navigate towards http://127.0.0.1:8080 to verify your application is running correctly.
 
 
 ## Deploy to Cloud Run
 
 1. Build the container image using [Jib](https://cloud.google.com/java/getting-started/jib):
 
-        mvn clean package com.google.cloud.tools:jib-maven-plugin:2.8.0:build \
-          -Dimage=gcr.io/YOUR_PROJECT_ID/run-sql -DskipTests
+       mvn clean package -DskipTests
 
-2. Deploy the app:
+2. To publish the image to container registry run:
+
+       mvn deploy -DskipTests
+
+3. Deploy the app:
     ```sh
     gcloud run deploy run-sql --image gcr.io/YOUR_PROJECT_ID/run-sql \
       --add-cloudsql-instances INSTANCE-CONNECTION-NAME \
