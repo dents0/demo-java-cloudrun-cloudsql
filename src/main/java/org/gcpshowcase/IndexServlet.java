@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-@WebServlet("/")
+@WebServlet(name = "Index", value = "")
 public class IndexServlet extends HttpServlet {
 
   static class TemplateData {
