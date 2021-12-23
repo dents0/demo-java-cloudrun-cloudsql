@@ -71,16 +71,9 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <executions>
-          <!--  Disable standard Maven artifact JAR deploy  -->
-          <execution>
-            <id>default-deploy</id>
-            <phase>none</phase>
-          </execution>
-        </executions>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.2</version>
       </plugin>
-      <!--  Container build & Push to artifactory  -->
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
