@@ -15,20 +15,13 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat</artifactId>
-      <version>9.0.53</version>
-      <type>pom</type>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>9.0.56</version>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <version>1.2.6</version>
     </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -71,14 +64,11 @@
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
-        <configuration>
-          <port>8080</port>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.0-M1</version>
         <executions>
           <!--  Disable standard Maven artifact JAR deploy  -->
           <execution>
