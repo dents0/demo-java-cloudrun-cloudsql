@@ -17,11 +17,37 @@
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-servlet-api</artifactId>
       <version>9.0.56</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.glassfish.web</groupId>
-      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-      <version>1.2.6</version>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>3.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.websocket</groupId>
+      <artifactId>javax.websocket-api</artifactId>
+      <version>1.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.security.enterprise</groupId>
+      <artifactId>javax.security.enterprise-api</artifactId>
+      <version>1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>8.0</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -59,24 +85,34 @@
   </dependencies>
 
   <build>
+    <defaultGoal>compile</defaultGoal>
+    <!--  Configuration plugins  -->
     <plugins>
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
+        <configuration>
+          <port>8080</port>
+          <path>/</path>
+          <jarScanAllDirectories>false</jarScanAllDirectories>
+          <systemProperties>
+            <tomcat.util.scan.DefaultJarScanner.jarsToSkip>*.jar</tomcat.util.scan.DefaultJarScanner.jarsToSkip>
+          </systemProperties>
+        </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.0.0-M1</version>
-        <executions>
-          <!--  Disable standard Maven artifact JAR deploy  -->
-          <execution>
-            <id>default-deploy</id>
-            <phase>none</phase>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-deploy-plugin</artifactId>-->
+<!--        <version>3.0.0-M1</version>-->
+<!--        <executions>-->
+<!--          &lt;!&ndash;  Disable standard Maven artifact JAR deploy  &ndash;&gt;-->
+<!--          <execution>-->
+<!--            <id>default-deploy</id>-->
+<!--            <phase>none</phase>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -91,6 +127,19 @@
             </resource>
           </webResources>
         </configuration>
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>default-war</id>-->
+<!--            <phase>none</phase>-->
+<!--          </execution>-->
+<!--          <execution>-->
+<!--            <id>war-exploded</id>-->
+<!--            <phase>package</phase>-->
+<!--            <goals>-->
+<!--              <goal>exploded</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
       </plugin>
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
