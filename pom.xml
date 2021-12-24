@@ -101,18 +101,18 @@
           </systemProperties>
         </configuration>
       </plugin>
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-deploy-plugin</artifactId>-->
-<!--        <version>3.0.0-M1</version>-->
-<!--        <executions>-->
-<!--          &lt;!&ndash;  Disable standard Maven artifact JAR deploy  &ndash;&gt;-->
-<!--          <execution>-->
-<!--            <id>default-deploy</id>-->
-<!--            <phase>none</phase>-->
-<!--          </execution>-->
-<!--        </executions>-->
-<!--      </plugin>-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.0.0-M1</version>
+        <executions>
+          <!--  Disable standard Maven artifact JAR deploy  -->
+          <execution>
+            <id>default-deploy</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
