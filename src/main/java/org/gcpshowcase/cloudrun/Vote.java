@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gcpshowcase;
+package org.gcpshowcase.cloudrun;
 
 import java.sql.Timestamp;
 import java.util.Locale;

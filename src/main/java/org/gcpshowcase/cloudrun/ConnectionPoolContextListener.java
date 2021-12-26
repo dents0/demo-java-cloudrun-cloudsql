@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gcpshowcase;
+package org.gcpshowcase.cloudrun;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

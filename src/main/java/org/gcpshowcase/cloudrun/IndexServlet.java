@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gcpshowcase;
+package org.gcpshowcase.cloudrun;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -39,7 +39,7 @@ import javax.sql.DataSource;
 @WebServlet(name = "Index", value = "")
 public class IndexServlet extends HttpServlet {
 
-  static class TemplateData {
+  public static class TemplateData {
 
     public int tabCount;
     public int spaceCount;
